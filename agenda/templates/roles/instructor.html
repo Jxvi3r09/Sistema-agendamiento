@@ -1,0 +1,79 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Instructor - Agenda SENA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body class="bg-[#f5f6f7] font-sans min-h-screen flex flex-col">
+
+    <!-- Modal de bienvenida -->
+    <div id="welcomeModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
+            <h2 class="text-3xl font-bold text-[#007C41] mb-4">¡Bienvenido Instructor!</h2>
+            <p class="text-gray-600 mb-6">Aquí podrás cargar y gestionar tu información para las comisiones.</p>
+            <button onclick="closeModal()" class="bg-[#007C41] hover:bg-[#005c30] text-white px-6 py-2 rounded-full transition">
+                Ingresar
+            </button>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div id="mainContent" class="hidden flex-1 flex items-center justify-center px-4">
+        <div class="bg-white rounded-xl shadow-lg p-6 w-full max-w-6xl h-[90vh] flex flex-col justify-between overflow-hidden">
+
+            <!-- Encabezado -->
+            <header>
+                <h1 class="text-3xl font-bold text-[#007C41]">Panel del Instructor</h1>
+                <p class="text-gray-600">Gestión de información para comisiones SENA</p>
+            </header>
+
+            <!-- Contenido dividido -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1 mt-4 overflow-hidden">
+                <!-- Columna izquierda: descarga y carga -->
+                <div class="space-y-6 overflow-y-auto pr-2">
+                    <!-- Paso 1: Descargar -->
+                    <div>
+                        <h2 class="text-xl font-semibold text-gray-800 mb-2">Paso 1: Descargar plantilla</h2>
+                        <p class="text-gray-600 mb-3">Descargue este archivo, llénelo y luego cárguelo en el siguiente paso.</p>
+                        <a href="/ruta/al/archivo.pdf" download
+                           class="bg-[#007C41] hover:bg-[#005c30] text-white px-5 py-2 rounded-lg shadow inline-block">
+                            Descargar plantilla PDF
+                        </a>
+                    </div>
+
+                    <!-- Paso 2: Cargar -->
+                    <div>
+                        <h2 class="text-xl font-semibold text-gray-800 mb-2">Paso 2: Subir archivo completado</h2>
+                        <label for="cargarPdf" class="block text-gray-700 mb-2">Seleccione su archivo PDF:</label>
+                        <input type="file" id="cargarPdf" accept="application/pdf" onchange="mostrarPDF(this)"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#007C41]" />
+                    </div>
+                </div>
+
+                <!-- Columna derecha: vista previa -->
+                <div class="flex flex-col">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">Vista previa del archivo</h2>
+                    <div id="pdfViewer" class="flex-1 bg-gray-100 flex items-center justify-center rounded-md border text-gray-500 text-sm h-full">
+                        Ningún archivo cargado
+                    </div>
+                </div>
+            </div>
+
+            <!-- Instrucciones -->
+            <footer class="mt-4">
+                <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+                    <li>Use solo archivos PDF.</li>
+                    <li>Asegúrese de llenar todos los datos en la plantilla.</li>
+                    <li>Verifique que el archivo cargado sea visible en la vista previa.</li>
+                    <li>Este proceso es obligatorio para validar su participación.</li>
+                </ul>
+            </footer>
+        </div>
+    </div>
+<!--  importar el archivo JavaScript -->
+ <script src="{% static 'js/instructor.js' %}"></script>
+</body>
+</html>

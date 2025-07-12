@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Dashboard</title>
+  </head>
+  <body class="bg-[#f5f6f7] font-sans min-h-screen flex flex-col">
+    <div class="flex-1 flex items-center justify-center px-4">
+      <div
+        class="bg-white rounded-xl shadow-lg p-6 w-full max-w-6xl h-[90vh] flex flex-col justify-between overflow-hidden"
+      >
+        <!-- Encabezado -->
+        <header>
+          <h1 class="text-3xl font-bold text-[#007C41]">Dashboard</h1>
+          {% if user.is_authenticated %}
+          <p class="text-gray-600">
+            Bienvenido, {{ user.first_name }} {{ user.last_name }}
+          </p>
+          {% endif %}
+        </header>
+
+        <!-- Contenido principal -->
+        <div class="flex-1 mt-4 overflow-y-auto">
+          {% if user.is_authenticated %}
+          <div class="flex justify-end mb-4">
+            <a
+              href="{% url 'login' %}"
+              class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full transition"
+            >
+              Cerrar sesión
+            </a>
+          </div>
+          {% else %}
+          <p class="text-gray-600">No has iniciado sesión.</p>
+          {% endif %}
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-4">
+          <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+            <li>Bienvenido a tu panel de control</li>
+            <li>Aquí podrás gestionar tus actividades</li>
+          </ul>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>

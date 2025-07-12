@@ -1,0 +1,77 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendador - Agenda SENA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#f5f6f7] font-sans min-h-screen flex flex-col">
+
+    <!-- Modal de bienvenida -->
+    <div id="welcomeModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div class="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
+            <h2 class="text-3xl font-bold text-[#007C41] mb-4">¡Bienvenido Agendador!</h2>
+            <p class="text-gray-600 mb-6">Desde aquí podrás cargar documentos y ver archivos aprobados por el coordinador.</p>
+            <button onclick="closeModal()" class="bg-[#007C41] hover:bg-[#005c30] text-white px-6 py-2 rounded-full transition">
+                Ingresar
+            </button>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div id="mainContent" class="hidden flex-1 flex items-center justify-center px-4">
+        <div class="bg-white rounded-xl shadow-lg p-6 w-full max-w-6xl h-[90vh] flex flex-col justify-between overflow-hidden">
+
+            <!-- Encabezado -->
+            <header>
+                <h1 class="text-3xl font-bold text-[#007C41]">Panel del Agendador</h1>
+                <p class="text-gray-600">Gestión de archivos y notificaciones</p>
+            </header>
+
+            <!-- Contenido dividido -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 flex-1 mt-4 overflow-hidden">
+                
+                <!-- Sección izquierda: cargar PDF -->
+                <div class="space-y-6 overflow-y-auto pr-2">
+                    <h2 class="text-xl font-semibold text-gray-800">Cargar documento PDF</h2>
+                    <p class="text-gray-600">Seleccione el archivo correspondiente a la agenda del día.</p>
+                    <input type="file" accept="application/pdf"
+                        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-[#007C41]" />
+                    <button class="bg-[#007C41] hover:bg-[#005c30] text-white px-5 py-2 rounded-lg shadow">
+                        Subir PDF
+                    </button>
+                </div>
+
+                <!-- Sección derecha: notificaciones -->
+                <div class="overflow-y-auto">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Notificaciones del Coordinador</h2>
+                    <ul class="space-y-4">
+                        <li class="bg-gray-100 p-4 rounded-lg shadow">
+                            <p class="text-gray-700"><strong>Archivo aprobado:</strong> Agenda_Semana1.pdf</p>
+                            <span class="text-sm text-green-600">✔ Aprobado - 08/07/2025</span>
+                        </li>
+                        <li class="bg-gray-100 p-4 rounded-lg shadow">
+                            <p class="text-gray-700"><strong>Archivo aprobado:</strong> Agenda_ProyectoA.pdf</p>
+                            <span class="text-sm text-green-600">✔ Aprobado - 05/07/2025</span>
+                        </li>
+                        <li class="bg-gray-100 p-4 rounded-lg shadow">
+                            <p class="text-gray-700"><strong>Archivo aprobado:</strong> Reunión_Ficha120.pdf</p>
+                            <span class="text-sm text-green-600">✔ Aprobado - 02/07/2025</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Pie de página -->
+            <footer class="mt-4">
+                <p class="text-sm text-gray-500">Recuerda mantener los documentos organizados y actualizados.</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="{% static 'js/agendador.js' %}"></script>
+
+</body>
+</html>

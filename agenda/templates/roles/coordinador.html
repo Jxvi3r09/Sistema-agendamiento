@@ -1,0 +1,118 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Coordinador</title>
+  </head>
+  <body class="bg-[#f5f6f7] font-sans min-h-screen flex flex-col">
+    <!-- Modal de bienvenida -->
+    <div
+      id="welcomeModal"
+      class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+    >
+      <div
+        class="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center"
+      >
+        <h2 class="text-3xl font-bold text-[#007C41] mb-4">
+          ¡Bienvenido Coordinador!
+        </h2>
+        <p class="text-gray-600 mb-6">
+          Aquí podrás revisar y gestionar las solicitudes de comisión enviadas
+          por los instructores.
+        </p>
+        <button
+          onclick="closeModal()"
+          class="bg-[#007C41] hover:bg-[#005c30] text-white px-6 py-2 rounded-full transition"
+        >
+          Ingresar
+        </button>
+      </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div
+      id="mainContent"
+      class="hidden flex-1 flex items-center justify-center px-4"
+    >
+      <div
+        class="bg-white rounded-xl shadow-lg p-6 w-full max-w-6xl h-[90vh] flex flex-col justify-between overflow-hidden"
+      >
+        <!-- Encabezado -->
+        <header>
+          <h1 class="text-3xl font-bold text-[#007C41]">
+            Panel del Coordinador
+          </h1>
+          <p class="text-gray-600">Gestión de solicitudes de comisión SENA</p>
+        </header>
+
+        <!-- Contenido principal: lista de solicitudes -->
+        <div class="flex-1 mt-4 overflow-y-auto">
+          <h2 class="text-xl font-semibold text-gray-800 mb-4">
+            Solicitudes recibidas
+          </h2>
+          <!-- Ejemplo de tabla de solicitudes -->
+          <div class="overflow-x-auto">
+            <table class="min-w-full bg-white rounded-lg shadow">
+              <thead>
+                <tr class="bg-[#007C41] text-white">
+                  <th class="py-2 px-4 text-left">Instructor</th>
+                  <th class="py-2 px-4 text-left">Fecha</th>
+                  <th class="py-2 px-4 text-left">Estado</th>
+                  <th class="py-2 px-4 text-left">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Aquí se deben renderizar las solicitudes dinámicamente -->
+                <tr class="border-b">
+                  <td class="py-2 px-4">Juan Pérez</td>
+                  <td class="py-2 px-4">2024-06-10</td>
+                  <td class="py-2 px-4">
+                    <span
+                      class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded"
+                      >Pendiente</span
+                    >
+                  </td>
+                  <td class="py-2 px-4">
+                    <button
+                      class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded mr-2"
+                    >
+                      Ver PDF
+                    </button>
+                    <button
+                      class="bg-green-600 hover:bg-green-700 text-white px-3 py-1 rounded mr-2"
+                    >
+                      Aprobar
+                    </button>
+                    <button
+                      class="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
+                    >
+                      Rechazar
+                    </button>
+                  </td>
+                </tr>
+                <!-- ...más filas dinámicas... -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Instrucciones -->
+        <footer class="mt-4">
+          <ul class="list-disc list-inside text-gray-700 space-y-1 text-sm">
+            <li>Revisa cada solicitud y verifica el archivo PDF adjunto.</li>
+            <li>
+              Puedes aprobar o rechazar las solicitudes según los criterios
+              institucionales.
+            </li>
+            <li>El estado de cada solicitud se actualizará automáticamente.</li>
+          </ul>
+        </footer>
+      </div>
+    </div>
+
+    <script src="{% static 'js/coordinador.js' %}"></script>
+  </body>
+</html>
