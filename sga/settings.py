@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config
+import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -161,13 +163,20 @@ SITE_ID = 1
 # Asegurarse de que usamos la misma URL en toda la configuración
 SITE_URL = 'http://localhost:8000'
 
+
+
+
+#encriptar las variables de entorno, en este caso las credenciales de Microsoft
+# Configurar environ
+env = environ.Env()
+environ.Env.read_env()  # Lee el archivo .env
 # settings.py
 
 SOCIALACCOUNT_PROVIDERS = {
     'microsoft': {
         'APP': {
-            'client_id': os.environ.get('MICROSOFT_CLIENT_ID', '940ed517-f7c6-4928-ba51-faa90112b219'),
-            'secret': os.environ.get('MICROSOFT_CLIENT_SECRET', ''),
+            'client_id': config('MICROSOFT_CLIENT_ID'),
+            'secret': config('MICROSOFT_CLIENT_SECRET'),
         },
         'OAUTH_PKCE_ENABLED': True,
         'SCOPE': ['openid', 'email', 'profile'],
